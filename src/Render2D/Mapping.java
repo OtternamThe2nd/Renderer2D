@@ -2,8 +2,6 @@ package Render2D;
 
 public class Mapping {
 	static public int[][][][] mapPlane(int xpoints[],int ypoints[],int width,int height){
-		//float parallelxpoints[][]=new float[width][4];
-		//float parallelypoints[][]=new float[height][4];
 		int out[][][][]=new int[height][width][4][2];
 		for(float i=0;i<height;i++) {
 			float dx1=(xpoints[1]-xpoints[0]);
