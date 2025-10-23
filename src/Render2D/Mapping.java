@@ -1,34 +1,29 @@
 package Render2D;
-
 public class Mapping {
-	static public int[][][][] mapPlane(int xpoints[],int ypoints[],int width,int height){
-		int out[][][][]=new int[height][width][4][2];
+	static public int[][][][] mapPlane(int xpoints[],int ypoints[],float width,float height){
+		int out[][][][]=new int[(int)height][(int)width][4][2];
 		for(float i=0;i<height;i++) {
-			float dx1=(xpoints[1]-xpoints[0]);
-			float dy1=(ypoints[1]-ypoints[0]);
-			float dx2=(xpoints[2]-xpoints[3]);
-			float dy2=(ypoints[2]-ypoints[3]);
-			float x11=xpoints[0]+(dx1*(i/(float)height));
-			float y11=ypoints[0]+(dy1*(i/(float)height));
-			float x21=xpoints[3]+(dx2*(i/(float)height));
-			float y21=ypoints[3]+(dy2*(i/(float)height));
-			float x12=xpoints[0]+(dx1*((float)(i+(float)1)/(float)height));
-			float y12=ypoints[0]+(dy1*((float)(i+(float)1)/(float)height));
-			float x22=xpoints[3]+(dx2*((float)(i+(float)1)/(float)height));
-			float y22=ypoints[3]+(dy2*((float)(i+(float)1)/(float)height));
+			float t1=((i)/height);
+			float t2=((i+1)/height);
+			float x11=(1f-t1)*xpoints[0]+t1*xpoints[3];
+			float y11=(1f-t1)*ypoints[0]+t1*ypoints[3];
+			float x21=(1f-t1)*xpoints[1]+t1*xpoints[2];
+			float y21=(1f-t1)*ypoints[1]+t1*ypoints[2];
+			float x12=(1f-t2)*xpoints[0]+t2*xpoints[3];
+			float y12=(1f-t2)*ypoints[0]+t2*ypoints[3];
+			float x22=(1f-t2)*xpoints[1]+t2*xpoints[2];
+			float y22=(1f-t2)*ypoints[1]+t2*ypoints[2];
 			for(float j=0;j<width;j++) {
-				float dx3=(xpoints[3]-xpoints[0]);
-				float dy3=(ypoints[3]-ypoints[0]);
-				float dx4=(xpoints[2]-xpoints[1]);
-				float dy4=(ypoints[2]-ypoints[1]);
-				float x31=(float)xpoints[0]+(dx3*(j/(float)width));
-				float y31=(float)ypoints[0]+(dy3*(j/(float)width));
-				float x41=(float)xpoints[1]+(dx4*(j/(float)width));
-				float y41=(float)ypoints[1]+(dy4*(j/(float)width));
-				float x32=(float)xpoints[0]+(dx3*((float)(j+(float)1)/(float)width));
-				float y32=(float)ypoints[0]+(dy3*((float)(j+(float)1)/(float)width));
-				float x42=(float)xpoints[1]+(dx4*((float)(j+(float)1)/(float)width));
-				float y42=(float)ypoints[1]+(dy4*((float)(j+(float)1)/(float)width));
+				t1=((j)/width);
+				t2=((j+1)/width);
+				float x31=(1f-t1)*xpoints[0]+(t1)*xpoints[1];
+				float y31=(1f-t1)*ypoints[0]+(t1)*ypoints[1];
+				float x41=(1f-t1)*xpoints[3]+(t1)*xpoints[2];
+				float y41=(1f-t1)*ypoints[3]+(t1)*ypoints[2];
+				float x32=(1f-t2)*xpoints[0]+(t2)*xpoints[1];
+				float y32=(1f-t2)*ypoints[0]+(t2)*ypoints[1];
+				float x42=(1f-t2)*xpoints[3]+(t2)*xpoints[2];
+				float y42=(1f-t2)*ypoints[3]+(t2)*ypoints[2];
 				float[] xs1= {x11,x21,x31,x41};
 				float[] ys1= {y11,y21,y31,y41};
 				out[(int)i][(int)j][0]=intersect(xs1,ys1);
@@ -70,5 +65,47 @@ public class Mapping {
 		else y=(m2*x+b2);
 		int points[]= {Math.round(x),Math.round(y)};
 		return points;
+	}
+	public static void output(float[] in) {
+		for(int i=0;i<in.length-1;i++) {
+			System.out.print(in[i]+", ");
+		}
+		System.out.println(in[in.length-1]);
+	}
+	public static void output(float in[][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
+	}
+	public static void output(float in[][][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
+	}
+	public static void output(float in[][][][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
+	}
+	public static void output(int[] in) {
+		for(int i=0;i<in.length-1;i++) {
+			System.out.print(in[i]+", ");
+		}
+		System.out.println(in[in.length-1]);
+	}
+	public static void output(int in[][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
+	}
+	public static void output(int in[][][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
+	}
+	public static void output(int in[][][][]) {
+		for(int i=0;i<in.length;i++) {
+			output(in[i]);
+		}
 	}
 }
