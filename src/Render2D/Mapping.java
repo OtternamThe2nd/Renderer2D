@@ -18,7 +18,6 @@ public class Mapping {
 			float y12=ypoints[0]+(dy1*((float)(i+(float)1)/(float)height));
 			float x22=xpoints[3]+(dx2*((float)(i+(float)1)/(float)height));
 			float y22=ypoints[3]+(dy2*((float)(i+(float)1)/(float)height));
-			//System.out.println(x11+", "+y11+", "+x21+", "+y21+", "+x12+", "+y12+", "+x22+", "+y22);
 			for(float j=0;j<width;j++) {
 				float dx3=(xpoints[3]-xpoints[0]);
 				float dy3=(ypoints[3]-ypoints[0]);
@@ -32,34 +31,20 @@ public class Mapping {
 				float y32=(float)ypoints[0]+(dy3*((float)(j+(float)1)/(float)width));
 				float x42=(float)xpoints[1]+(dx4*((float)(j+(float)1)/(float)width));
 				float y42=(float)ypoints[1]+(dy4*((float)(j+(float)1)/(float)width));
-				//System.out.println(x31+", "+y31+", "+x41+", "+y41+", "+x32+", "+y32+", "+x42+", "+y42);
 				float[] xs1= {x11,x21,x31,x41};
 				float[] ys1= {y11,y21,y31,y41};
-//				test1.output(xs1);
-//				test1.output(ys1);
 				out[(int)i][(int)j][0]=intersect(xs1,ys1);
-//				test1.output(out[(int)i][(int)j][0]);
 				float[] xs2= {x11,x21,x32,x42};
 				float[] ys2= {y11,y21,y32,y42};
-//				test1.output(xs2);
-//				test1.output(ys2);
 				out[(int)i][(int)j][1]=intersect(xs2,ys2);
-//				test1.output(out[(int)i][(int)j][1]);
 				float[] xs3= {x12,x22,x32,x42};
 				float[] ys3= {y12,y22,y32,y42};
-//				test1.output(xs3);
-//				test1.output(ys3);
 				out[(int)i][(int)j][2]=intersect(xs3,ys3);
-//				test1.output(out[(int)i][(int)j][2]);
 				float[] xs4= {x12,x22,x31,x41};
 				float[] ys4= {y12,y22,y31,y41};
-//				test1.output(xs4);
-//				test1.output(ys4);
 				out[(int)i][(int)j][3]=intersect(xs4,ys4);
-//				test1.output(out[(int)i][(int)j][3]);
 			}
 		}
-//		test1.output(out);
 		return out;
 	}
 	static public int[] intersect(float xpoints[],float ypoints[]) {
@@ -85,9 +70,6 @@ public class Mapping {
 		}
 		if(dx1!=0) y=(m1*x+b1);
 		else y=(m2*x+b2);
-		//System.out.println(m1+", "+m2+", "+b1+", "+b2);
-		//System.out.println(points[0]+", "+points[1]);
-		//System.out.println(m1+", "+b1+", "+m2+", "+b2);
 		int points[]= {Math.round(x),Math.round(y)};
 		return points;
 	}
