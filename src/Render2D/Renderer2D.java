@@ -181,6 +181,26 @@ public class Renderer2D {
 			}
 		}
 	}
+	public void drawLine(int xpoints[],int ypoints[],int fontweight,byte color[]) {
+		float dx=xpoints[1]-xpoints[0];
+		float dy=ypoints[1]-ypoints[0];
+		System.out.println(dx+" "+dy);
+		float dpoint[]=Plane.normalize(dy, dx);
+		System.out.println(dpoint[0]+" "+dpoint[1]);
+		int sxpoints[]= {
+			(int)(dpoint[0]*fontweight+xpoints[0]),
+			(int)(-dpoint[0]*fontweight+xpoints[0]),
+			(int)(-dpoint[0]*fontweight+xpoints[1]),
+			(int)(dpoint[0]*fontweight+xpoints[1]),
+		};
+		int sypoints[]= {
+			(int)(-dpoint[1]*fontweight+ypoints[0]),
+			(int)(dpoint[1]*fontweight+ypoints[0]),
+			(int)(dpoint[1]*fontweight+ypoints[1]),
+			(int)(-dpoint[1]*fontweight+ypoints[1])
+		};
+		drawQuads(sxpoints,sypoints,color);
+	}
 	public static int getHighest(int vals[]) {
 		int highest=vals[0];
 		for(int val :vals) {
@@ -202,3 +222,4 @@ public class Renderer2D {
 		return canvas;
 	}
 }
+
